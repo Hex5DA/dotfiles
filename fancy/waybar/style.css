@@ -1,0 +1,45 @@
+* {
+    margin: 0 6px;
+    font-family: Inter;
+    color: white;
+    /* border: none; */
+}
+
+#waybar {
+    border-bottom: 3px solid white;
+    border-radius: 10px;
+    background-color: rgba(100, 149, 237, 0.425);
+}
+
+#workspaces button {
+    margin: 0 2px;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button:hover {
+    background-color: rgba(100, 149, 237, 0.55);
+    border: none;
+}
+
+#workspaces button.active {
+    margin: 0 2px;
+    border-bottom: 3px solid cornflowerblue;
+}
+
+#workspaces {
+    margin: 0;
+}
+
+#cpu.warning  { color: orange }
+#cpu.critical { color: red }
+#memory.warning  { color: orange }
+#memory.critical { color: red }
+
+#pulseaudio.muted {
+    color: red;
+    text-decoration: line-through;
+}
+
+#custom-power {
+    font-size: 16px;
+}

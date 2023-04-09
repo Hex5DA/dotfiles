@@ -1,0 +1,108 @@
+// Global 
+{
+    "layer": "top",
+    "position": "top",
+    // If height property would be not present, it'd be calculated dynamically
+    "margin-top": 10,
+    "margin-left": 20,
+    "margin-right": 20,
+    "spacing": 5,
+    "height": 35,
+    "modules-left": [
+        "wlr/workspaces",
+    ],
+    "modules-center": [
+        "user",
+        "clock",
+        "tray",
+    ],
+    "modules-right": [
+        "network",
+        "memory",
+        "cpu",
+        "pulseaudio",
+        "custom/power",
+    ],
+    // Modules
+    "user": {
+        "format": "{user} ({work_H}:{work_M})",
+        "interval": 60,
+        "icon": true,
+        "tooltip": false,
+    },
+    "clock": {
+        "interval": 10,
+        "format-alt": " {:%e %b %Y}", // Icon: calendar-alt
+        "format": "{:%H:%M}",
+        "tooltip-format": "{:%e %B %Y}"
+    },
+    "cpu": {
+        "interval": 5,
+        "format": "CPU: {usage}%", // Icon: microchip
+        "states": {
+            "warning": 50,
+            "critical": 90,
+        },
+        "on-click": "xfce4-terminal -e 'htop'",
+    },
+    "memory": {
+        "interval": 5,
+        "format": "Mem: {}%", // Icon: memory
+        "on-click": "xfce4-terminal -e 'htop'",
+        "states": {
+            "warning": 50,
+            "critical": 90
+        }
+    },
+    "network": {
+        "interval": 30,
+        "format-wifi": " ", // Icon: wifi
+        "tooltip-format-wifi": "Connected via WiFi. (Signal strength {signalStrength}%)",
+        "format-ethernet": "  ", // Icon: ethernet
+        "tooltip-format-ethernet": "Connected via Ethernet.",
+        "format-disconnected": "⚠  ",
+        "tooltip-format-disconnected": "No network connection.",
+    },
+    "network#vpn": {
+        "interface": "tun0",
+        "format": "  {essid} ({signalStrength}%)",
+        "format-disconnected": "⚠  Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+    },
+    "wlr/workspaces": {
+        "disable-scroll": true,
+        "disable-markup": false,
+        "all-outputs": true,
+        "format": "{name}",
+        "on-click": "activate",
+        "on-click-right": "close",
+    },
+    "pulseaudio": {
+        "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}  {format_source}",
+        "format-bluetooth-muted": " {icon}  {format_source}",
+        "format-muted": "婢 {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "phone": "",
+            "default": [
+                ""
+            ]
+        },
+        "on-click": "pavucontrol",
+        "on-scroll-up": "pamixer -ui 1",
+        "on-scroll-down": "pamixer -ud 1",
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10,
+    },
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "exec wlogout",
+        "tooltip": false,
+    },
+}

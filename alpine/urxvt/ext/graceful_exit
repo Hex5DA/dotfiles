@@ -1,0 +1,18 @@
+#!/usr/bin/perl
+
+sub on_wm_delete_window {
+    my ($self, $event) = @_;
+    my $CP = `ps --ppid $self->{shell_pid} -o pid= | wc -l`;
+    chomp $CP;
+    if ( $CP != 0 ) {
+        $self->scr_bell;
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+sub on_child_start {
+    my($self, $pid) = @_;
+    $self->{shell_pid} = $pid;
+}

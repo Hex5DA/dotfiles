@@ -1,0 +1,6 @@
+URxvt.scrollBar: false
+URxvt.font: xft:Jetbrains Mono:size=10
+URxvt.internalBorder: 8
+URxvt.underlineURLs: true
+URxvt.urlLauncher: firefox
+! URxvt.perl-ext-common: graceful_exit

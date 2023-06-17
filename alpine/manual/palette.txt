@@ -1,0 +1,5 @@
+general palette because i'm too lazy to copy them all across
+https://coolors.co/palette/7881c4-bf8eaa-d999a3-f7ac90-fdc9b4-f28950
+
+background: #1c1d1d
+foreground: #c5c8c6

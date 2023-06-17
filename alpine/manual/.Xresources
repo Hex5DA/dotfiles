@@ -1,0 +1,52 @@
+#include "/home/0x5da/.config/urxvt/conf"
+
+#define nord0 #2E3440
+#define nord1 #3B4252
+#define nord2 #434C5E
+#define nord3 #4C566A
+#define nord4 #D8DEE9
+#define nord5 
+#define nord6 
+#define nord7 
+#define nord8 
+#define nord9 #81A1C1
+#define nord10 #5E81AC
+#define nord11 
+#define nord12 #D08770
+#define nord13 
+#define nord14 
+#define nord15 
+!
+! colours
+! a mix of my wallpaper run through
+! https://github.com/thefryscorer/schemer2
+! and the nord theme
+! (https://www.nordtheme.com/)
+
+*.background: #1c1d1d
+*.foreground: #c5c8c6
+*.cursorColor: #c5c8c6
+
+*.color0: #ab9bcc
+*.color8: #bd91b4 
+
+*.color1: #BF616A
+*.color9: #BF616A
+
+*.color2: #A3BE8C
+*.color10: #A3BE8C
+
+*.color3: #EBCB8B
+*.color11: #EBCB8B
+
+*.color4: #d36f58
+*.color12: #d36f58
+
+*.color5: #B48EAD
+*.color13: #B48EAD
+
+*.color6: #88C0D0
+*.color14: #8FBCBB
+
+*.color7: #E5E9F0
+*.color15: #ECEFF4

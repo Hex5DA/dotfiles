@@ -66,5 +66,5 @@ lua require("colourscheme")
 lua require("general")
 
 if argc() == 0
-  lua require("startup")
+  lua require("splash")
 endif

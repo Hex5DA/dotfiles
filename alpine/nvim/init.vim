@@ -26,6 +26,15 @@ call dein#add(s:dein_dir)
 
 " plugins go here
 call dein#add('nvim-treesitter/nvim-treesitter', {'hook_post_update': 'TSUpdate'})
+call dein#add('nvim-telescope/telescope.nvim')
+call dein#add('nvim-lua/plenary.nvim')
+
+" completion (._.)
+call dein#add('neovim/nvim-lspconfig')
+call dein#add('hrsh7th/nvim-cmp')
+call dein#add('hrsh7th/cmp-nvim-lsp')
+call dein#add('hrsh7th/cmp-buffer')
+call dein#add('SirVer/ultisnips')
 
 call dein#end()
   
@@ -33,18 +42,29 @@ if dein#check_install()
   call dein#install()
 endif
 
+set statusline=%f%=%=\ %p%%\ (%l\ @\ %c)
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
+set number
+set relativenumber
 
 filetype indent plugin on
 if has('syntax')
   syntax on
 endif
 
-"set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P
-set statusline=%f%=%=%p%%\ (%l\ @\ %c)
+let mapleader = "\<space>"
+noremap <Leader>f <cmd>Telescope find_files<cr>
+noremap <Leader>F <cmd>Telescope oldfiles<cr>
+noremap <Leader>g <cmd>Telescope treesitter<cr>
+noremap <Leader>h <cmd>Telescope live_grep<cr>
+noremap <C-f> <cmd>lua vim.lsp.buf.format()<cr>
 
-lua require("general")
 lua require("colourscheme")
+lua require("general")
+
+if argc() == 0
+  lua require("startup")
+endif

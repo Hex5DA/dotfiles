@@ -1,31 +1,31 @@
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "rust", "lua", "vim", "vimdoc", "c" },
+    ensure_installed = { "rust", "lua", "vim", "vimdoc", "c", "html" },
     auto_install = true,
     highlight = {
     	enable = true,
     },
 }
 
-function run(cmd)
-    local handle = io.popen(cmd)
-    local result = handle:read("*a")
-    handle:close()
-    return result
-end
- 
-function dirty()
-    local git = run("[ -d .git ] && echo '' || echo 'no'")
-    if git:len() > 1 then
-        return ""
-    end
+local lspconfig = require"lspconfig"
+lspconfig.rust_analyzer.setup {}
+lspconfig.tsserver.setup {}
 
-    local status = run("git status --porcelain 2> /dev/null")
-    if status:len() > 0 then
-        return "D"
-    else
-        return "C"
-    end
-end
+local cmp = require("cmp")
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            vim.fn["UltiSnips#Anon"](args.body)
+        end,
+    },
+    sources = cmp.config.sources({
+        { name = "nvim_lsp" }
+    }, {
+        { name = "buffer" }
+    }),
+    mapping = cmp.mapping.preset.insert({
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    })
+})
 
--- \ WT:%{luaeval('dirty()')}
-vim.o.statusline = "%f%=%= %{luaeval('dirty()')} %p%% (%l @ %c)"
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+lspconfig["rust_analyzer"].setup { capabilities = capabilities }

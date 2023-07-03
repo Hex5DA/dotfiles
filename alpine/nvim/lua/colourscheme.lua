@@ -85,13 +85,13 @@ function xresources.highlight(group, color)
       ' ' .. bg..' '..sp)
 end
 
-function xresources.load_syntax()
+function load_syntax()
    local syntax = {
 
       -- syntax group
       Boolean = {fg=xresources.yellow};
       Comment = {fg=xresources.grey1};
-      Constant = {fg=xresources.cyan};
+      Constant = {fg=xresources.red};
       Character = {fg=xresources.green};
       Conditional = {fg=xresources.purple};
       Debug = {};
@@ -101,7 +101,7 @@ function xresources.load_syntax()
       Exception = {fg=xresources.purple};
       Float = {fg=xresources.yellow};
       Function = {fg=xresources.blue};
-      Identifier = {fg=xresources.red};
+      Identifier = {fg=xresources.fg};
       Ignore = {};
       Include = {fg=xresources.blue};
       Keyword = {fg=xresources.red};
@@ -241,13 +241,27 @@ function xresources.load_syntax()
    return syntax
 end
 
+function load_plugin_syntax()
+    local syntax = {
+        TelescopeBorder = {fg=xresources.cyan};
+        TelescopePromptBorder = {fg=xresources.blue}
+    }
+    return syntax
+end
+
 local async_load_plugin 
 async_load_plugin = vim.loop.new_async(vim.schedule_wrap(function ()
    xresources.terminal_color()
-   local syntax = xresources.load_syntax()
+   local syntax = load_syntax()
    for group,colors in pairs(syntax) do
       xresources.highlight(group,colors)
    end
+
+   local pluin_syntax = load_plugin_syntax()
+   for group,colors in pairs(syntax) do
+      xresources.highlight(group,colors)
+   end
+
    async_load_plugin:close()
 end))
 
@@ -258,10 +272,17 @@ function xresources.colorscheme()
    end
    vim.o.termguicolors = true
    vim.g.colors_name = 'xresources'
-   local syntax = xresources.load_syntax()
+
+   local syntax = load_syntax()
    for group,colors in pairs(syntax) do
       xresources.highlight(group,colors)
    end
+
+   local pluin_syntax = load_plugin_syntax()
+   for group,colors in pairs(syntax) do
+      xresources.highlight(group,colors)
+   end
+
    async_load_plugin:send()
 end
 
